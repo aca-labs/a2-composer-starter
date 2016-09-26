@@ -1,0 +1,193 @@
+
+@import '~bourbon/app/assets/stylesheets/bourbon';
+@import 'ui-vars';
+
+/*=======================*\
+||    Global styles     ||
+\*=======================*/
+
+/*=======================*\
+||    System styles     ||
+\*=======================*/
+
+/* Font Styles */
+
+.small  { font-size: 0.8rem; }
+.normal { font-size: 1.0rem; }
+.big    { font-size: 1.2rem; }
+.large  { font-size: 1.4rem; }
+
+
+/*=======================*\
+||    Utility styles     ||
+\*=======================*/
+
+.disabled{
+    pointer-events: none;
+}
+
+.overflow{
+    overflow: auto;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.fit {
+    max-height: 99%;
+    max-width: 99%;
+}
+
+.fill {
+    width: 100%;
+    height: 100%;
+}
+
+.overlay{
+
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+
+.noselect {
+    @include user-select(none);
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.align-center{
+    text-align: center;
+}
+
+.version {
+	position: fixed;
+	padding: 0.5em;
+	color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 0.1em 0.1em 1px rgba(0,0,0,0.2);
+	border-radius: 0.2em;
+	bottom: 0.5em;
+	left: 0.5em;
+	font-size: 3mm;
+	z-index: 99999;
+}
+
+@media screen and (max-width: 720px) {
+    .mobile-hide {
+        display: none;
+    }
+}
+
+/*=======================*\
+||   Application Styles  ||
+\*=======================*/
+
+* a {
+    text-decoration: none;
+    color: #FFF;
+    &:hover{
+	    color: #FFF;
+	    text-decoration: none;
+	}
+}
+
+.title {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.composer {
+	/* Composer Primary color */
+	&.style-primary {
+		background-color: $primary-color;
+		color: #FFF;
+		&:hover, &.hover {
+			background-color: #FFF;
+			color: $primary-color;
+		}
+	}
+	&.style-primary-i {
+		background-color: #FFF;
+		color: $primary-color;
+		&:hover, &.hover {
+			color: #FFF;
+		}
+	}
+	/* Button Styles */
+
+	&.btn-primary {
+		background-color: $primary-color;
+		color: #FFF;
+		cursor: pointer;
+		padding: 0.2em 1.0em 0.4em 1.0em !important;
+		&:hover, &.hover { background-color: $primary-color - #111111; }
+	}
+	&.border-primary { border-color: $primary-color !important; }
+	&.bg-primary     { background-color: $primary-color; }
+}
+
+
+/*========================*\
+||    Overwrite styles    ||
+\*========================*/
+
+.material-icons {
+	font-size: 1.0em;
+}
+
+.error-notify, .info-notify, .success-notify {
+    color: #FFFFFF;
+    text-align: left;
+	box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.2);
+	& .close-btn {
+		color: #FFFFFF;
+		&:hover {
+			color: rgba(255,255,255,0.54);
+		}
+	}
+    & .contents {
+        margin-top: -0.4em;
+        & div {
+            flex-grow: 1;
+            flex-shrink: 1;
+            padding-right: 0.2em;
+    		word-wrap: normal;
+            vertical-align: middle;
+            &.icon {
+                padding-top: 0.4em;
+                padding-right: 0.7em;
+                flex-grow: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        & i {
+            font-size: 2.5em;
+        }
+    }
+}
+
+.error-notify {
+    background-color: #E53935;
+}
+
+.info-notify {
+    background-color: #1E88E5;
+}
+
+.success-notify {
+    background-color: #00C853;
+}
