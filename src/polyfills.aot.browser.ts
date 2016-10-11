@@ -34,7 +34,7 @@ import 'zone.js/dist/zone';
 import 'ts-helpers';
 declare var ENV: any;
 import './vendor.browser';
-import './main.browser';
+import './main.aot.browser';
 
 if ('production' === ENV) {
   // Production

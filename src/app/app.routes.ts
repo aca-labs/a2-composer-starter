@@ -1,9 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
-
-import { DataResolver } from './app.resolver';
+import { NoContent } from './errors';
 
 
 export const ROUTES: Routes = [

@@ -2,7 +2,8 @@
 * Angular 2 decorators and services
 */
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
-import { NotificationService, ModalService } from '@aca-1/a2-widgets';
+import { ModalService, NotificationService } from '@aca-1/a2-widgets';
+import { SystemsService } from '@aca-1/a2-composer';
 
 /*
 * App Component
@@ -11,9 +12,7 @@ import { NotificationService, ModalService } from '@aca-1/a2-widgets';
 @Component({
     selector: 'app',
     encapsulation: ViewEncapsulation.None,
-    styles: [
-        require('./app.style.scss')
-    ],
+    styleUrls: [ './app.style.css' ],
     template: `
     <div class="app">
         <router-outlet></router-outlet>
@@ -23,10 +22,13 @@ import { NotificationService, ModalService } from '@aca-1/a2-widgets';
 export class App {
     constructor(private view: ViewContainerRef,
                 private modal: ModalService,
-                private notify: NotificationService ) {
+                private notify: NotificationService,
+				private systems: SystemsService
+            ) {
+            // Dynamic components need a view to build then
         modal.view = view;
         notify.view = view;
-        notify.canClose(false, 5000);
+            // Setup composer
 
     }
 }

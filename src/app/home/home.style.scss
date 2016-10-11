@@ -1,1 +1,159 @@
-/*styles for home content only*/
+
+@import 'ui-vars';
+
+div.home {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    text-align: center;
+    & .topbar {
+        position: absolute;
+        top: 0; height: 4.0em;
+        left: 0; right: 0;
+        background-color: $primary-color;
+        color: #FFFFFF;
+        display: flex;
+        box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+        user-select: none;
+        & .logo {
+            height: 3.0em;
+            width: 8.0em;
+            margin: 0.5em;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        & .heading {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5em;
+        }
+        & .options {
+            flex-grow: 1;
+            text-align: right;
+            font-size: 2.0em;
+            padding: 0.35em;
+            & .material-icons{
+                cursor: pointer;
+                &:hover {
+                    color: rgba(255,255,255,0.54);
+                }
+            }
+        }
+    }
+
+    & .device-menu {
+        position: absolute;
+        top: -100%;
+        right: 0;
+        background-color: #FFFFFF;
+        border-radius: 0 0 0.1em 0.1em;
+        box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+        display: inline-block;
+        text-align: left;
+        overflow: auto;
+        & ul {
+            list-style: none;
+            padding: 0.25em 0;
+            margin: 0;
+            font-size: 1.5em;
+            & li {
+                padding: 0.25em 1.0em;
+                height: 2.0em;
+                cursor: pointer;
+                user-select: none;
+                &:hover {
+                    background-color: rgba(0,0,0,0.1);
+                }
+                &:active {
+                    background-color: rgba(0,0,0,0.2);
+                    box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+                    color: rgba(0,0,0,0.87);
+                }
+                & .material-icons {
+                    font-size: 1.2em;
+                }
+                & strong {
+                    position: relative;
+                    top: -0.2em;
+                }
+            }
+        }
+    }
+
+    & .main-body {
+        position: absolute;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        padding-top: 4.0em;
+        background-color: rgba(0,0,0,0.1);
+        overflow: auto;
+        & .content {
+            padding: 1.5em;
+            & .content-box {
+                min-width: 20.0em;
+                max-width: 100%;
+                min-height: 18.0em;
+                background-color: #FFFFFF;
+                border-radius: 0.1em;
+                box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+                & .tab {
+                    font-size: 1.5em;
+                    width: 5.0em;
+                    & .icon {
+                        height: 1.1em;
+                        font-size: 2.0em;
+                    }
+                }
+                & .tab-ctnt {
+                    max-width: 100%;
+                    font-size: 1.2em;
+                    text-align: left;
+                    padding: 0.5em;
+                    &.flex {
+                        display: flex;
+                        &.phone {
+                            align-items: center;
+                        }
+                        & .item {
+                            flex-grow: 1;
+                            text-align: center;
+                            padding: 0.25em;
+                        }
+                    }
+                    & .toggle {
+                        display: inline-block;
+                        position: relative;
+                        top: -1.0em;
+                    }
+                    & .numpad {
+                        display: flex;
+                        flex-wrap: wrap;
+                        margin: auto;
+                        font-size: 1.25em;
+                        width: 8.0em;
+                        text-align: center;
+                        & .num {
+                            width: 2.0em;
+                            padding: 0.25em;
+                            margin: 0.2em;
+                            border-radius: 0.1em;
+                            box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+                            cursor: pointer;
+                            &:hover {
+                                box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        & .footer {
+            padding: 0.5em;
+            color: rgba(0,0,0,0.54);
+        }
+    }
+}

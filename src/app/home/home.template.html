@@ -1,3 +1,116 @@
 <div class="home">
-
+    <div class="main-body">
+        <div class="content">
+            <div class="content-box">
+                <tab-group>
+                    <tab-head id="0">
+                        <div class="tab">
+                            <div class="icon"><i class="material-icons">wifi</i></div>
+                            <div class="text">Wireless</div>
+                        </div>
+                    </tab-head>
+                    <tab-head id="1">
+                        <div class="tab">
+                            <div class="icon"><i class="material-icons">settings_input_hdmi</i></div>
+                            <div class="text">Wired</div>
+                        </div>
+                    </tab-head>
+                    <tab-head id="2">
+                        <div class="tab">
+                            <div class="icon"><i class="material-icons">group_work</i></div>
+                            <div class="text">VC</div>
+                        </div>
+                    </tab-head>
+                    <tab-head id="3">
+                        <div class="tab">
+                            <div class="icon"><i class="material-icons">phone</i></div>
+                            <div class="text">Phone</div>
+                        </div>
+                    </tab-head>
+                    <tab-body id="0">
+                        <div class="tab-ctnt">
+                            <ol>
+                                <li>Open <strong>MirrorOp</strong> on you laptop</li>
+                                <li>Select <strong>space name</strong>(e.g. Burleigh) into <strong>input hostname or IP</strong></li>
+                                <li>Select <strong>Connect</strong></li>
+                                <li>Enter <strong>4-digit code</strong> on the <strong>Display</strong></li>
+                                <li>Select <strong>Play</strong></li>
+                            </ol>
+                        </div>
+                    </tab-body>
+                    <tab-body id="1">
+                        <div class="tab-ctnt">
+                            <ol>
+                                <li>Connect <strong>USB</strong> or <strong>HDMI Cable</strong> to Laptop</li>
+                                <li>On the right of this screen, select the <strong>input method</strong></li>
+                                <li>At the bottom of this screen, select the <strong>Display(s)</strong></li>
+                            </ol>
+                        </div>
+                    </tab-body>
+                    <tab-body id="2">
+                        <div class="tab-ctnt flex">
+                            <div class="item">
+                                <h3>Host Conference</h3>
+                                <data-input type="text" placeholder="Extension" [(model)]="extension"></data-input>
+                                <div class="toggle-grp">
+                                    <toggle type="icon" [(state)]="allow_phone" view="square"><i class="material-icons">{{allow_phone ? 'done' : ''}}</i></toggle>
+                                    <div class="toggle">Allow phone participants</div>
+                                </div>
+                                <btn btnType="raised" color="teal">Start</btn>
+                            </div>
+                            <div class="item">
+                                <h3>Join Conference</h3>
+                                <data-input type="text" placeholder="Extension" [(model)]="extension"></data-input><br>
+                                <btn btnType="raised" color="teal" (onClick)="1+1">Join</btn>
+                            </div>
+                        </div>
+                    </tab-body>
+                    <tab-body id="3">
+                        <div class="tab-ctnt flex phone">
+                            <div class="item">
+                                <h3>Number to dial</h3>
+                                <data-input type="text" [(model)]="phone_num"></data-input>
+                                <div class="numpad">
+                                    <div class="num" (click)="addNumber('1')">1</div>
+                                    <div class="num" (click)="addNumber('2')">2</div>
+                                    <div class="num" (click)="addNumber('3')">3</div>
+                                    <div class="num" (click)="addNumber('4')">4</div>
+                                    <div class="num" (click)="addNumber('5')">5</div>
+                                    <div class="num" (click)="addNumber('6')">6</div>
+                                    <div class="num" (click)="addNumber('7')">7</div>
+                                    <div class="num" (click)="addNumber('8')">8</div>
+                                    <div class="num" (click)="addNumber('9')">9</div>
+                                    <div class="num" (click)="addNumber('*')">*</div>
+                                    <div class="num" (click)="addNumber('0')">0</div>
+                                    <div class="num" (click)="addNumber('#')">#</div>
+                                </div>
+                            </div>
+                            <div class="item options">
+                                <btn btnType="raised" color="teal"><i class="material-icons">touch_app</i> Dial</btn><br><br>
+                                <btn btnType="raised" color="teal"><i class="material-icons">call_end</i> Hang Up</btn><br><br>
+                                <btn btnType="raised" [color]="mic_on ? 'teal' : 'red'" (onClick)="mic_on=!mic_on"><i class="material-icons">{{mic_on ? 'mic' : 'mic_off'}}</i> Mute Mics</btn>
+                            </div>
+                        </div>
+                    </tab-body>
+                </tab-group>
+            </div>
+        </div>
+        <div class="footer">
+            Copyright&copy; 2016 Advanced Control &amp; Acoustic Pty Ltd. All Rights Reserved.
+        </div>
+    </div>
+    <div class="device-menu" [@menushow]="menu_open ? 'down' : 'up'">
+        <ul>
+            <li><i class="material-icons">power_settings_new</i> <strong>Power</strong></li>
+            <li><i class="material-icons">help</i> <strong>Help</strong></li>
+            <li><i class="material-icons">link</i> <strong>Join Rooms</strong></li>
+            <li><i class="material-icons">settings_applications</i> <strong>Control</strong></li>
+            <li><i class="material-icons">lightbulb_outline</i> <strong>Lights</strong></li>
+        </ul>
+    </div>
+    <div class="topbar">
+        <div class="logo" [style.background-image]="'url('+image+')'"></div>
+        <div class="heading">{{title}}</div>
+        <div class="options"><i class="material-icons" (click)="menu_open=!menu_open">{{ menu_open ? 'close' : 'menu' }}</i></div>
+    </div>
 </div>

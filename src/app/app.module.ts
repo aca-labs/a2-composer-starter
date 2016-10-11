@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { ACA_WIDGETS_MODULE } from '@aca-1/a2-widgets';
 import { ACA_COMPOSER_MODULE } from '@aca-1/a2-composer';
-import { ACA_WIDGET_MODULE } from '@aca-1/a2-widgets';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -14,13 +14,12 @@ import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
 import { Home } from './home';
-import { NoContent } from './no-content';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { NoContent } from './errors';
 //import { APP_MAIN_COMPONENTS } from './main';
 
 // Application wide providers
-const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS
+const APP_PROVIDERS: any[] = [
+
 ];
 
 /**
@@ -37,9 +36,9 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ACA_COMPOSER_MODULE,
-    ACA_WIDGET_MODULE,
-    RouterModule.forRoot(ROUTES, { useHash: false })
+    RouterModule.forRoot(ROUTES, { useHash: false }),
+    ACA_WIDGETS_MODULE,
+    ACA_COMPOSER_MODULE
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

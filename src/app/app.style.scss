@@ -1,5 +1,4 @@
 
-@import '~bourbon/app/assets/stylesheets/bourbon';
 @import 'ui-vars';
 
 /*=======================*\
@@ -61,7 +60,7 @@
 }
 
 .noselect {
-    @include user-select(none);
+    user-select: none;
 }
 
 .no-padding {
@@ -190,4 +189,14 @@
 
 .success-notify {
     background-color: #00C853;
+}
+
+.aca.btn .raised button {
+    min-width: 8.0em !important;
+}
+
+@media screen and (max-width: 720px) {
+    .app {
+        font-size: 4.0vmin;
+    }
 }
