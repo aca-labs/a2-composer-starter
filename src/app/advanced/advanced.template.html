@@ -1,4 +1,4 @@
-<div class="home">
+<div class="complex">
     <div class="main-body">
         <div class="content">
             <div class="content-box">
@@ -69,7 +69,12 @@
                         <div class="tab-ctnt flex phone">
                             <div class="item">
                                 <h3>Number to dial</h3>
-                                <data-input type="text" [(model)]="phone_num"></data-input>
+                                <div class="number">
+                                    <div class="number">{{ phone_num&&phone_num!=='' ? phone_num : 'No Number'}}</div>
+                                    <div class="close" *ngIf="phone_num&&phone_num!==''">
+                                        <i class="material-icons" (click)="phone_num=''">close</i>
+                                    </div>
+                                </div>
                                 <div class="numpad">
                                     <div class="num" (click)="addNumber('1')">1</div>
                                     <div class="num" (click)="addNumber('2')">2</div>
@@ -86,13 +91,25 @@
                                 </div>
                             </div>
                             <div class="item options">
-                                <btn btnType="raised" color="teal"><i class="material-icons">touch_app</i> Dial</btn><br><br>
-                                <btn btnType="raised" color="teal"><i class="material-icons">call_end</i> Hang Up</btn><br><br>
-                                <btn btnType="raised" [color]="mic_on ? 'teal' : 'red'" (onClick)="mic_on=!mic_on"><i class="material-icons">{{mic_on ? 'mic' : 'mic_off'}}</i> Mute Mics</btn>
+                                <btn btnType="raised" color="teal" [disabled]="!phone_num||phone_num===''"><i class="material-icons">touch_app</i> Dial</btn><br><br>
+                                <btn btnType="raised" color="teal" [disabled]="in_call"><i class="material-icons">call_end</i> Hang Up</btn><br><br>
+                                <btn btnType="raised" [color]="mic_on ? 'teal' : 'red'" [disabled]="in_call" (onClick)="mic_on=!mic_on"><i class="material-icons">{{mic_on ? 'mic' : 'mic_off'}}</i> Mute Mics</btn>
                             </div>
                         </div>
                     </tab-body>
                 </tab-group>
+                <div class="displays">
+                    <div class="volume">
+                        <div class="icon" (click)="mute=!mute"><i class="material-icons">{{ volume > 0 && !mute ? 'volume_up' : 'volume_off'}}</i></div>
+                        <div class="slider"><slider align="vertical" [(value)]="volume"></slider></div>
+                    </div>
+                    <div class="display" *ngFor="let display of displays">
+                        <div class="monitor">
+                            <div class="name">{{display.name}}</div>
+                            <div *ngIf="!display.connected" class="error">Comm Error</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer">
@@ -109,8 +126,15 @@
         </ul>
     </div>
     <div class="topbar">
-        <div class="logo" [style.background-image]="'url('+image+')'"></div>
+        <div class="logo" [style.background-image]="'url('+image+')'" (click)="navigate('')"></div>
         <div class="heading">{{title}}</div>
         <div class="options"><i class="material-icons" (click)="menu_open=!menu_open">{{ menu_open ? 'close' : 'menu' }}</i></div>
+    </div>
+    <div class="start-overlay" *ngIf="!started" (click)="start()">
+        <div class="start-block">
+            <h2>Touch to Start</h2>
+            (this will turn on the Displays)
+            <p><strong>{{title}}</strong></p>
+        </div>
     </div>
 </div>

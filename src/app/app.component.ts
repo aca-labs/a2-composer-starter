@@ -29,6 +29,14 @@ export class App {
         modal.view = view;
         notify.view = view;
             // Setup composer
-
+        systems.setup({
+            id: 'AcaEngine',
+            scope: 'public',
+            oauth_server: 'http://localhost:3000/auth/oauth/authorize',
+            oauth_tokens: 'http://localhost:3000/auth/token',
+            redirect_uri: 'http://localhost:9000/oauth-resp.html',
+            api_endpoint: 'http://localhost:3000/control/',
+            proactive: true
+        });
     }
 }

@@ -1,10 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
-import { Home } from './home';
+import { SimpleComponent } from './simple';
+import { AdvancedAppComponent } from './advanced';
 import { NoContent } from './errors';
 
 
 export const ROUTES: Routes = [
-  { path: '',      component: Home },
-  { path: 'home',  component: Home },
+  { path: '',      component: SimpleComponent },
+  { path: 'complex',  component: AdvancedAppComponent },
+  { path: 'complex/:tab_id',  component: AdvancedAppComponent },
   { path: '**',    component: NoContent },
 ];

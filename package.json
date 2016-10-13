@@ -1,6 +1,6 @@
 {
   "name": "a2-composer-starter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple Angular 2 Starter Kit for Composer - Webpack 2, SASS, AOT",
   "main": "index.js",
   "scripts": {

@@ -6,6 +6,8 @@ var exec = require('child_process').exec;
 var clean = require('gulp-clean');
 
 gulp.task('build',      ['webpack:dev']);
+gulp.task('serve',      ['webpack:dev']);
+gulp.task('serve:dev',  ['webpack:dev']);
 gulp.task('build:dev',  ['webpack:dev']);
 gulp.task('build:prod', ['webpack:prod']);
 gulp.task('test',       ['webpack:test']);

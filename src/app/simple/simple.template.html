@@ -1,0 +1,32 @@
+<div class="home">
+    <div class="main-body">
+        <div class="content">
+            <div class="content-box">
+                <div class="">
+                    <h2>Example App</h2>
+                    <p>
+                        Below is a list of devices in the system specified and their power status.<br>
+                        The power switch will be greyed out if a device is not connected.
+                    </p>
+                    <div class="system" *ngFor="let key of system_data['sys-B0'] | keys">
+                        <div class="module" *ngFor="let item of key.value; let i = index">
+                            <div class="name">{{key.key}} {{i+1}}:</div>
+                            <div class="status"><toggle type="text" [(state)]="item.power" active="On" inactive="Off" [disabled]="!item.connected"></toggle></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    A more complex example can be reached by clicking the button below<br>
+                    <btn btnType="raised" color="teal" (onClick)="navigate('complex')">Complex Example</btn>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            Copyright&copy; 2016 Advanced Control &amp; Acoustic Pty Ltd. All Rights Reserved.
+        </div>
+    </div>
+    <div class="topbar">
+        <div class="logo" [style.background-image]="'url('+image+')'" (click)="navigate('')"></div>
+        <div class="heading">{{title}}</div>
+    </div>
+</div>

@@ -21,6 +21,8 @@ import 'rxjs/add/operator/mergeMap';
 // Other libraries
 declare let ENV: any;
 
+import './lib/hammer';
+
 if ('production' === ENV) {
   // Production
 

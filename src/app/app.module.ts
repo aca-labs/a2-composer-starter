@@ -13,7 +13,8 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { App } from './app.component';
-import { Home } from './home';
+import { SimpleComponent } from './simple';
+import { AdvancedAppComponent } from './advanced';
 import { NoContent } from './errors';
 //import { APP_MAIN_COMPONENTS } from './main';
 
@@ -29,7 +30,8 @@ const APP_PROVIDERS: any[] = [
   bootstrap: [ App ],
   declarations: [
     App,
-    Home,
+    SimpleComponent,
+    AdvancedAppComponent,
     NoContent
   ],
   imports: [ // import Angular's modules
