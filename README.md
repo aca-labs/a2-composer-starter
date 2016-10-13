@@ -1,6 +1,6 @@
 #ACA Composer Front-end Angular 2 Starter Kit
 
-![Example App](https://cloud.githubusercontent.com/assets/20103948/19332857/cc4edcee-913b-11e6-9cf1-719c95cba61d.png)
+![Example App](https://cloud.githubusercontent.com/assets/20103948/19332942/9213791c-913c-11e6-9fa3-7e0513daa93f.png)
 
 ##Usage
 
