@@ -5,10 +5,13 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp build",
-    "serve:dev": "gulp build:dev",
     "build:dev": "gulp build:dev",
     "build:prod": "gulp build:prod",
-    "test": "test"
+    "clean:install": "npm set progress=false && npm install",
+    "postinstall": "npm run typings -- install",
+    "serve:dev": "gulp build:dev",
+    "test": "test",
+    "typings": "typings"
   },
   "keywords": [
     "angular2",
