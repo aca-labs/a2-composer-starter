@@ -121,13 +121,47 @@ div.home {
                 padding: 0.5em;
                 border-radius: 0.1em;
                 box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+                & .info {
+                    padding: 0.5em;
+                }
                 & .module {
                     text-align: left;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    & div {
+                    & .item {
                         min-width: 8.0em;
+                    }
+                    &.device {
+                        & .item {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                        & .filler {
+                            flex-grow: 1;
+                            flex-shrink: 1;
+                            width: 60vw;
+                        }
+                        & .status {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding-top: 0.5em;
+                            & .circle {
+                                margin: 0 0.5em;
+                                width: 1.0em;
+                                height: 1.0em;
+                                border-radius: 100%;
+                                background-color: #F44336;
+                                font-size: 0.5em;
+                                box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
+                                &.on {
+                                    background-color: #4CAF50;
+                                }
+                            }
+                        }
                     }
                 }
             }

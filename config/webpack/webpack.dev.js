@@ -18,7 +18,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
  */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 const HOST = process.env.HOST || 'localhost';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
@@ -181,6 +181,7 @@ module.exports = function(options) {
       inline: true,
       watch: true,
       'content-base': '.build/',
+      //proxy: { "*" : `http://localhost:3000` },
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
