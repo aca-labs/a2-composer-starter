@@ -28,13 +28,14 @@ export class App {
             // Dynamic components need a view to build then
         modal.view = view;
         notify.view = view;
-        let url = 'http://localhost:3000';
+        let url = location.origin;
+        let dev = true;
             // Setup composer
         systems.setup({
             id: 'AcaEngine',
             scope: 'public',
-            host: 'localhost',
-            port: '3001',
+            host: location.hostname,
+            port: dev ? '3000' : location.port,
             oauth_server: `${url}/auth/oauth/authorize`,
             oauth_tokens: `${url}/auth/token`,
             redirect_uri: `${location.origin}/oauth-resp.html`,
@@ -42,6 +43,6 @@ export class App {
             proactive: true
         });
         window['debug'] = true;
-        window['debug_module'] = ['COMPOSER_WS', 'COMPOSER_BINDING'];
+        window['debug_module'] = ['COMPOSER_WS', 'COMPOSER_BINDING', 'COMPOSER_SYSTEMS'];
     }
 }

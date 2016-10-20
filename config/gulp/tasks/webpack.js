@@ -48,7 +48,7 @@ gulp.task('webpack:dev', ['build:watch'], function() {
         }
     });
 
-    server.listen(3000, '0.0.0.0', function(err) {
+    server.listen(3001, '0.0.0.0', function(err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
         // Server listening
         gutil.log("[webpack-dev-server]", "http://localhost:3000/webpack-dev-server/index.html");

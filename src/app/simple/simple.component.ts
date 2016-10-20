@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { trigger, transition, animate, style, state, keyframes } from '@angular/core';
 import { Router } from '@angular/router';
+import { SystemsService } from '@aca-1/a2-composer';
 
 @Component({
   // The selector is what angular internally uses
@@ -41,7 +42,11 @@ export class SimpleComponent {
 
     constructor(private router: Router, private systems: SystemsService) {
         let system = systems.get('sys_1-10');
-        systems.resources.get('System').get().then((sys_list: any) => {
+        this.loadSystems();
+    }
+
+    loadSystems() {
+        this.systems.resources.get('System').get().then((sys_list: any) => {
             this.system_list = sys_list.results;
         }, (err: any) => {
             console.error(err);
@@ -88,19 +93,9 @@ export class SimpleComponent {
             }
             if(sys && device) {
                 this.systems.resources.get('SystemModule').get({system_id: sys.id, module: device.module, index: device.index }).then((mod: any) => {
-                    console.log(mod);
-                    /*
-                    if(mod.power) {
-                        device.power = false;
-                        device.connected = (Math.random() * 10 > 3);
-                    }
-                    console.log(device);
-                    this.device = JSON.parse(JSON.stringify(device));
-                    */
                     this.device = mod.results[this.mod_index];
                     this.device.module = device.module;
                     this.device.index = device.index;
-                    console.log(this.device);
                     //this.module = mod;
                     setTimeout(() => {
                         this.loading_mod = false;

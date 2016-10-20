@@ -33,9 +33,9 @@
                     if(loc.indexOf('?') >= 0) {
                             // Remove hash if data is a hash
                         data = data.indexOf('?') >= 0 ? '&' + data.substr(data.indexOf('?')+1) : data;
-                    } else if(loc.indexOf('#')){
+                    } else if(loc.indexOf('#') >= 0){
                             // Remove question mark if data is query.
-                        data = data.indexOf('#') >= 0 ? '&' + data.substr(data.indexOf('?')+1) : data;
+                        data = data.indexOf('#') >= 0 ? '&' + data.substr(data.indexOf('#')+1) : data;
                     }
                     window.location.href = loc + data;
                 } else window.location.href = origin + data;

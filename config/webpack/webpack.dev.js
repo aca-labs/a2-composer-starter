@@ -181,7 +181,10 @@ module.exports = function(options) {
       inline: true,
       watch: true,
       'content-base': '.build/',
-      //proxy: { "*" : `http://localhost:3000` },
+      proxy: [
+          { path: '/', target: 'http://localhost:3000', secure: false, changeOrigin: true },
+          { path: '/', target: 'ws://localhost:3000',  ws: true, secure: false, changeOrigin: true }
+      ],
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000

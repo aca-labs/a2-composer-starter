@@ -48,10 +48,26 @@
                             <div class="item status"><div class="circle" [class.on]="device.connected"></div> {{device.connected ? 'Connected' : 'Disconnected'}}</div><br>
                             <div class="item status">
                                 <div style="display:none;"
-                                    binding [(value)]="device.power" [sys]="system.id" [mod]="device.module" [index]="device.index" bind="power" exec="" [params]="{ power: device.power }"
-                                ></div>
+                                    binding [(value)]="device.power" [sys]="system.id" [mod]="device.module" [index]="device.index" bind="power" exec=""
+                                >
+
+                                </div>
                                 <div class="name">Power:</div>
                                 <div class="status"><toggle type="text" [(state)]="device.power" active="On" inactive="Off" [disabled]="!device.connected"></toggle></div>
+                            </div>
+                            <div class="item status">
+                                <div class="status" *ngIf="device.power"
+                                    binding [sys]="system.id" [mod]="device.module" [index]="device.index" exec="power_off"
+                                    (onrelease)="$event.exec()" (onpress)="$event.exec()" (ontap)="$event.exec()"
+                                >
+                                    <btn btnType="raised" color="red">Power Off</btn>
+                                </div>
+                                    <div class="status" *ngIf="!device.power"
+                                        binding [sys]="system.id" [mod]="device.module" [index]="device.index" exec="power_up"
+                                        (onrelease)="$event.exec()" (onpress)="$event.exec()" (ontap)="$event.exec()"
+                                    >
+                                        <btn btnType="raised" color="green">Power On</btn>
+                                    </div>
                             </div>
                             <div class="filler"></div>
                         </div>
