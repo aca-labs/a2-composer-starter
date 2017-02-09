@@ -1,3 +1,12 @@
+/**
+* @Author: Alex Sorafumo <alex.sorafumo>
+* @Date:   17/10/2016 4:10 PM
+* @Email:  alex@yuion.net
+* @Filename: app.component.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:12 PM
+*/
+
 /*
 * Angular 2 decorators and services
 */
@@ -23,15 +32,15 @@ export class App {
     constructor(private view: ViewContainerRef,
                 private modal: ModalService,
                 private notify: NotificationService,
-				private systems: SystemsService
+				private systems: SystemsService,
+
             ) {
             // Dynamic components need a view to build then
         modal.view = view;
         notify.view = view;
         let url = location.origin;
         let dev = true;
-            // Setup composer
-        systems.setup({
+        let settings = {
             id: 'AcaEngine',
             scope: 'public',
             host: location.hostname,
@@ -40,9 +49,11 @@ export class App {
             oauth_tokens: `${url}/auth/token`,
             redirect_uri: `${location.origin}/oauth-resp.html`,
             api_endpoint: `${url}/control/`,
-            proactive: true
-        });
-        window['debug'] = true;
-        window['debug_module'] = ['COMPOSER_WS', 'COMPOSER_BINDING', 'COMPOSER_SYSTEMS'];
+            proactive: true,
+            mock: dev,
+            http: !dev
+        }
+            // Setup composer
+        systems.setup(settings);
     }
 }

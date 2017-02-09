@@ -1,3 +1,9 @@
+// @Author: Alex Sorafumo <alex.sorafumo>
+// @Date:   12/10/2016 2:02 PM
+// @Email:  alex@yuion.net
+// @Filename: simple.style.scss
+// @Last modified by:   alex.sorafumo
+// @Last modified time: 09/02/2017 1:12 PM
 
 @import 'ui-vars';
 
@@ -129,7 +135,7 @@ div.home {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    & .item {
+                    & .item, & .name {
                         min-width: 8.0em;
                     }
                     &.device {

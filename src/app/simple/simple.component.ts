@@ -1,18 +1,20 @@
+/**
+* @Author: Alex Sorafumo <alex.sorafumo>
+* @Date:   17/10/2016 4:10 PM
+* @Email:  alex@yuion.net
+* @Filename: simple.component.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:12 PM
+*/
+
 import { Component } from '@angular/core';
 import { trigger, transition, animate, style, state, keyframes } from '@angular/core';
 import { Router } from '@angular/router';
 import { SystemsService } from '@aca-1/a2-composer';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'simple',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [],
-  // Our list of styles in our component. We may add more to compose many styles together
+  selector: 'simple',
   styleUrls: [ './simple.style.css' ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './simple.template.html'
 })
 export class SimpleComponent {
@@ -46,11 +48,17 @@ export class SimpleComponent {
     }
 
     loadSystems() {
-        this.systems.resources.get('System').get().then((sys_list: any) => {
-            this.system_list = sys_list.results;
-        }, (err: any) => {
-            console.error(err);
-        });
+        if(!this.systems.resources){
+            this.systems.resources.get('System').get().then((sys_list: any) => {
+                this.system_list = sys_list.results;
+            }, (err: any) => {
+                console.error(err);
+            });
+        } else {
+            setTimeout(() => {
+                this.loadSystems();
+            }, 500);
+        }
     }
 
     loadModules(val: any) {

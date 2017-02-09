@@ -1,17 +1,20 @@
+/**
+* @Author: Alex Sorafumo
+* @Date:   19/10/2016 1:20 PM
+* @Email:  alex@yuion.net
+* @Filename: main.browser.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:13 PM
+*/
+
+
 import { Component } from '@angular/core';
 import { trigger, transition, animate, style, state, keyframes } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'advanced',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
-  providers: [],
-  // Our list of styles in our component. We may add more to compose many styles together
+  selector: 'advanced',
   styleUrls: [ './advanced.styles.css' ],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './advanced.template.html',
   animations: [
       trigger('menushow', [

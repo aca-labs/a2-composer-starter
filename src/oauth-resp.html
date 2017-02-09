@@ -1,3 +1,12 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   16/01/2017 9:43 AM
+@Email:  alex@yuion.net
+@Filename: oauth-resp.html
+@Last modified by:   alex.sorafumo
+@Last modified time: 09/02/2017 1:12 PM
+-->
+
 <!doctype html>
 <html>
     <head>
@@ -30,12 +39,14 @@
                 var loc = localStorage.getItem('oauth_redirect');
                 if(loc){
                     console.log('Redirecting to ' + loc);
-                    if(loc.indexOf('?') >= 0) {
+                    if(loc.indexOf('#') >= 0) loc = loc.split('#')[0];
+                    if(loc.indexOf('?') >= 0) loc = loc.split('?')[0];
+                    if(loc.indexOf('#') >= 0) {
                             // Remove hash if data is a hash
-                        data = data.indexOf('?') >= 0 ? '&' + data.substr(data.indexOf('?')+1) : data;
-                    } else if(loc.indexOf('#') >= 0){
+                        data = '#' + data.replace(new RegExp('#', 'g'), '');
+                    } else if(loc.indexOf('?') >= 0){
                             // Remove question mark if data is query.
-                        data = data.indexOf('#') >= 0 ? '&' + data.substr(data.indexOf('#')+1) : data;
+                        data = '?' + data.replace(new RegExp('?', 'g'), '');
                     }
                     window.location.href = loc + data;
                 } else window.location.href = origin + data;

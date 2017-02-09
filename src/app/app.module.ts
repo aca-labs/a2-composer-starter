@@ -1,3 +1,12 @@
+/**
+* @Author: Alex Sorafumo <alex.sorafumo>
+* @Date:   17/10/2016 4:10 PM
+* @Email:  alex@yuion.net
+* @Filename: app.module.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:12 PM
+*/
+
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -17,6 +26,7 @@ import { SimpleComponent } from './simple';
 import { AdvancedAppComponent } from './advanced';
 import { NoContent } from './errors';
 //import { APP_MAIN_COMPONENTS } from './main';
+import { APP_SERVICES } from './services';
 
 // Application wide providers
 const APP_PROVIDERS: any[] = [
@@ -43,8 +53,9 @@ const APP_PROVIDERS: any[] = [
     ACA_COMPOSER_MODULE
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    ENV_PROVIDERS,
-    APP_PROVIDERS,
+    ...ENV_PROVIDERS,
+    ...APP_PROVIDERS,
+    ...APP_SERVICES
   ]
 })
 export class AppModule {

@@ -1,3 +1,12 @@
+/**
+* @Author: Alex Sorafumo
+* @Date:   16/01/2017 9:43 AM
+* @Email:  alex@yuion.net
+* @Filename: vendor.browser.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:12 PM
+*/
+
 // For vendors for example jQuery, Lodash, angular2-jwt just import them here unless you plan on
 // chunking vendors files for async loading. You would need to import the async loaded vendors
 // at the entry point of the async loaded file. Also see custom-typings.d.ts as you also need to
@@ -17,11 +26,12 @@ import '@angular/router';
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import 'hammerjs';
+import 'moment';
+import 'moment-timezone'
 
 // Other libraries
 declare let ENV: any;
-
-import './lib/hammer';
 
 if ('production' === ENV) {
   // Production
@@ -31,3 +41,8 @@ if ('production' === ENV) {
   // Development
 
 }
+
+if(!window['wp.loaded']){
+    window['wp.loaded'] = []
+}
+window['wp.loaded'].push('vendor');

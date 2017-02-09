@@ -1,3 +1,12 @@
+/**
+* @Author: Alex Sorafumo
+* @Date:   19/10/2016 1:20 PM
+* @Email:  alex@yuion.net
+* @Filename: polyfills.browser.ts
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 09/02/2017 1:12 PM
+*/
+
 // TODO(gdi2290): switch to DLLs
 
 // Polyfills
@@ -33,8 +42,6 @@ import 'zone.js/dist/zone';
 // Typescript emit helpers polyfill
 import 'ts-helpers';
 declare var ENV: any;
-import './vendor.browser';
-import './main.browser';
 
 if ('production' === ENV) {
   // Production
@@ -44,3 +51,8 @@ if ('production' === ENV) {
   Error.stackTraceLimit = Infinity;
   require('zone.js/dist/long-stack-trace-zone');
 }
+
+if(!window['wp.loaded']){
+    window['wp.loaded'] = []
+}
+window['wp.loaded'].push('polyfills');

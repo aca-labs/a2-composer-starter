@@ -1,5 +1,49 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   04/10/2016 10:51 AM
+@Email:  alex@yuion.net
+@Filename: cache-loader.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 01/02/2017 10:41 AM
+-->
+
 <!DOCTYPE html>
 <html lang="" manifest="../../main.appcache">
 	<head></head>
-	<body></body>
+	<body>
+		<script>
+			function onUpdateReady() {
+				window.applicationCache.swapCache();
+				console.debug('[ACA][CACHE_LOADER] New cache found... Cache swapped... Downloading...');
+				setTimeout(function () {
+					finishedUpdate();
+				}, 1000);
+			}
+
+			function finishedUpdate() {
+				if(window.applicationCache.status === window.applicationCache.DOWNLOADING) {
+					setTimeout(function () {
+						finishedUpdate();
+					}, 1000);
+				} else {
+					console.debug('[ACA][CACHE_LOADER] New cache downloaded. Reloading...');
+			        var origin = window.location.origin;
+					parent.postMessage('CACHE_RELOAD', origin);
+				}
+			}
+
+			if(window.applicationCache){
+				window.applicationCache.addEventListener('updateready', onUpdateReady);
+				if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {
+					onUpdateReady();
+				}
+				setInterval(function () {
+	                if(window.applicationCache.status !== window.applicationCache.UNCACHED) {
+						window.applicationCache.update();
+					}
+				}, 300 * 1000);
+			}
+			console.debug('[ACA][CACHE_LOADER] iFrame Cache loader injected.');
+		</script>
+	</body>
 </html>

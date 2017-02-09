@@ -1,36 +1,50 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "declaration": false,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "pretty": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "noImplicitAny": false,
-    "noImplicitReturns": false,
-    "noImplicitUseStrict": false,
-    "noFallthroughCasesInSwitch": true,
-    "outDir": "./.build/compiled"
-  },
-  "files": [
-      ".build/app/app.module.ts",
-      "typings/index.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src",
-    ".build/app/lib/a2-composer/deps.d.ts",
-    ".build/main.aot.browser.ts",
-    ".build/polyfills.aot.browser.ts"
-  ],
-  "angularCompilerOptions": {
-    "genDir": "./.build/compiled",
-    "debug": true
- }
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "declaration": false,
+        "removeComments": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "pretty": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "noImplicitAny": false,
+        "noImplicitReturns": false,
+        "noImplicitUseStrict": false,
+        "noFallthroughCasesInSwitch": true,
+        "outDir": "./.build/compiled",
+        "lib": [
+            "dom",
+            "es6"
+        ],
+        "types": [
+            "hammerjs",
+            "jasmine",
+            "node",
+            "protractor",
+            "selenium-webdriver",
+            "source-map",
+            "uglify-js",
+            "webpack",
+            "systemjs"
+        ]
+    },
+    "files": [
+        ".build/app/app.module.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src",
+        ".build/app/lib/a2-composer/deps.d.ts",
+        ".build/main.aot.browser.ts",
+        ".build/polyfills.aot.browser.ts"
+    ],
+    "angularCompilerOptions": {
+        "genDir": "./.build/compiled",
+        "debug": true
+    }
 }

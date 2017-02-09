@@ -4,6 +4,8 @@ var gulp = require("gulp");
 var gutil = require("gulp-util");
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
+var url = require('url');
+var http = require('http');
 
 var config_dev = require('../../webpack/webpack.dev.js')({env: 'development'});
 var config_prod = require('../../webpack/webpack.prod.js')({env: 'production'});
@@ -16,7 +18,7 @@ gulp.task('webpack:dev', ['build:watch'], function() {
     var server = new WebpackDevServer(compiler, config_dev.devServer);
 
     server.use('/', function (req, resp, next) {
-        var opts = url.parse('http://localhost:8080');
+        var opts = url.parse('http://localhost:3000');
         opts.method = req.method;
         opts.headers = req.headers;
 
@@ -48,7 +50,7 @@ gulp.task('webpack:dev', ['build:watch'], function() {
         }
     });
 
-    server.listen(3001, '0.0.0.0', function(err) {
+    server.listen(3000, '0.0.0.0', function(err) {
         if(err) throw new gutil.PluginError("webpack-dev-server", err);
         // Server listening
         gutil.log("[webpack-dev-server]", "http://localhost:3000/webpack-dev-server/index.html");
