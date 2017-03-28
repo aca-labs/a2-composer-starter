@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-const app_name = 'STARTER_KIT';
+const app_name = 'MEETING_ADMIN';
 const reserved_keys = ['route', 'query', 'store'];
 
 @Injectable()
@@ -33,7 +33,7 @@ export class SettingsService {
     query_observer: any = null;
 	setup: boolean = false;
 
-	version: string = '0.2.0';
+	version: string = '0.1.0';
 
 	constructor(private http: Http, private route: ActivatedRoute){
         this.loadStore();
@@ -66,10 +66,11 @@ export class SettingsService {
 		});
 	}
     /**
-     * Logs debug messages to the console
-     * @param  {string} type Location that the message if coming from
-     * @param  {string} msg  Message to be logged
-     * @return {void}
+     * [log description]
+     * @param  {string} type [description]
+     * @param  {string} msg  [description]
+     * @param  {[type]}      [description]
+     * @return {[type]}      [description]
      */
     log(type: string, msg: string) {
         if(window['debug']) {

@@ -1,0 +1,43 @@
+// @Author: Alex Sorafumo <alex.sorafumo>
+// @Date:   11/01/2017 1:31 PM
+// @Email:  alex@yuion.net
+// @Filename: audio.styles.scss
+// @Last modified by:   alex.sorafumo
+// @Last modified time: 24/01/2017 12:18 PM
+
+div.audio {
+    padding: 1.0em;
+    & .no-content {
+        font-size: 0.8em;
+        color: rgba(0,0,0,0.54);
+        padding: 0.25em 1.5em;
+    }
+    & .header {
+        display: flex;
+        align-items: center;
+    }
+    & .list {
+        padding: 0.5em;
+        & .name {
+            font-size: 0.9em;
+        }
+        & .controls {
+            display: flex;
+            align-items: center;
+            padding: 0.25em;
+            & .volume {
+                font-size: 0.6em;
+                width: 20em;
+                max-width: 80vw;
+            }
+            & .mute {
+                display: flex;
+                align-items: center;
+                padding: 0 0.5em;
+                & .icon {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

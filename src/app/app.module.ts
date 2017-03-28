@@ -3,8 +3,8 @@
 * @Date:   17/10/2016 4:10 PM
 * @Email:  alex@yuion.net
 * @Filename: app.module.ts
-* @Last modified by:   Alex Sorafumo
-* @Last modified time: 01/02/2017 10:03 AM
+* @Last modified by:   alex.sorafumo
+* @Last modified time: 12/01/2017 2:15 PM
 */
 
 import { NgModule, ApplicationRef } from '@angular/core';
@@ -23,14 +23,15 @@ import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
 import { AppComponent } from './app.component';
-import { SimpleComponent } from './simple';
-import { AdvancedComponent } from './advanced';
-import { SERVICES } from './services';
+import { Bootstrapper } from './bootstrap';
+import { APP_COMPONENTS } from './control-admin';
 import { NoContent } from './errors';
+import { APP_SERVICES } from './services';
+import { POPUPS } from './popups'
 
 // Application wide providers
 const APP_PROVIDERS: any[] = [
-    ...SERVICES
+
 ];
 
 /**
@@ -40,8 +41,9 @@ const APP_PROVIDERS: any[] = [
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    SimpleComponent,
-    AdvancedComponent,
+    Bootstrapper,
+    ...APP_COMPONENTS,
+    ...POPUPS,
     NoContent
   ],
   imports: [ // import Angular's modules
@@ -54,11 +56,14 @@ const APP_PROVIDERS: any[] = [
     ACA_COMPOSER_MODULE
   ],
   entryComponents: [
+      ...POPUPS
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
-    ENV_PROVIDERS,
-    APP_PROVIDERS,
+    ...ENV_PROVIDERS,
+    ...APP_PROVIDERS,
+    ...APP_SERVICES
   ]
 })
 export class AppModule {
+
 }

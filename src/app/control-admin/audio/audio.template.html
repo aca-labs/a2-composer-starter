@@ -1,0 +1,57 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   11/01/2017 1:31 PM
+@Email:  alex@yuion.net
+@Filename: audio.template.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 03/02/2017 12:41 PM
+-->
+
+<div #main class="audio">
+    <div class="hidden" binding [(value)]="vol_min" [sys]="system" mod="System" bind="vol_min"></div>
+    <div class="hidden" binding [(value)]="vol_max" [sys]="system" mod="System" bind="vol_max"></div>
+    <div class="input">
+        <div class="header"><i class="material-icons">mic</i>&nbsp;<div class="text">Input Devices</div></div>
+        <div class="input-list list">
+            <div class="hidden" binding [(value)]="inputs" (valueChange)="setupInputList()" [sys]="system" mod="System" [index]="1" bind="mics"></div>
+            <div class="input" *ngFor="let m of input_list;let i = index">
+                <div class="name">{{m.name}}</div>
+                <div class="controls">
+                    <div class="mute">
+                        <div class="hidden" binding [(value)]="input_mute[i]" [sys]="system" mod="Mixer" [index]="1" [bind]="'fader' + m.item.id + '_' + m.item.index + '_mute'" exec="$mute" [params]="[m.item.id, input_mute[i], m.item.index]"></div>
+                        <div class="icon" [class.input-mute]="input_mute[i]" [class.input]="!input_mute[i]" (tap)="input_mute[i]=!input_mute[i]">
+                            <i class="material-icons">{{input_mute[i]||input_volume[i]<=vol_min?'mic_off':'mic'}}</i>
+                        </div>
+                    </div>
+                    <div class="volume">
+                        <div class="hidden" binding [(value)]="input_volume[i]" [sys]="system" mod="Mixer" [index]="1" [bind]="'fader' + m.item.id + '_' + m.item.index" exec="$fader" [params]="[m.item.id, input_volume[i], m.item.index]"></div>
+                        <slider [value]="input_volume[i]" (delayValueChange)="input_volume[i]=$event" [max]="vol_max" [min]="vol_min"></slider>
+                    </div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!input_list || input_list.length <= 0">No input audio devices</div>
+        </div>
+    </div>
+    <div class="output">
+        <div class="header"><i class="material-icons">volume_up</i>&nbsp;<div class="text">Output Devices</div></div>
+        <div class="output-list list">
+            <div class="hidden" binding [(value)]="outputs" (valueChange)="setupOutputList()" [sys]="system" mod="System" [index]="1" bind="outputs"></div>
+            <div class="display" *ngFor="let o of output_list; let i = index">
+                <div class="name">{{o.name}}</div>
+                <div class="controls">
+                    <div class="mute">
+                        <div class="hidden" binding [(value)]="output_mute[i]" [sys]="system" mod="Mixer" [index]="1" [bind]="'fader' + o.item.id + '_' + o.item.index + '_mute'" exec="$mute" [params]="[o.item.id, output_mute[i], o.item.index]"></div>
+                        <div class="icon" [class.output-mute]="output_mute[i]" [class.output]="!output_mute[i]" (tap)="output_mute[i]=!output_mute[i]">
+                            <i class="material-icons">{{output_mute[i]||output_volume[i]<=vol_min?'volume_off':'volume_up'}}</i>
+                        </div>
+                    </div>
+                    <div class="volume">
+                        <div class="hidden" binding [(value)]="output_volume[i]" [sys]="system" mod="Mixer" [index]="1" [bind]="'fader' + o.item.mixer_id + '_1'" exec="$fader" [params]="[o.item.mixer_id, output_volume[i], 1]"></div>
+                        <slider [value]="output_volume[i]" (delayValueChange)="output_volume[i]=$event" [max]="vol_max" [min]="vol_min"></slider>
+                    </div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!output_list || output_list.length <= 0">No output audio devices</div>
+        </div>
+    </div>
+</div>

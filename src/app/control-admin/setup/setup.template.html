@@ -1,0 +1,76 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   11/01/2017 1:31 PM
+@Email:  alex@yuion.net
+@Filename: audio.template.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 03/02/2017 3:18 PM
+-->
+
+<div #main class="setup">
+    <div class="displays block">
+        <div class="header">Display Control</div>
+        <div class="content">
+            <div class="hidden" binding [(value)]="outputs" (valueChange)="setupOutputList($event)" [sys]="system" mod="System" [index]="1" bind="outputs"></div>
+            <div class="content" *ngIf="!loading['displays'] && output_list && output_list.length > 0">
+                <div class="level-list">
+                    <div class="display" *ngFor="let o of output_list;let i = index">
+                        <div class="">
+                            <div class="text">{{o.name}}</div>
+                            <div class="hidden" binding [(value)]="active['displays'][i]" [sys]="system" [mod]="o.mod" [index]="o.index" bind="mute" exec="" [params]="[active['displays'][i]]"></div>
+                            <div class="status"><toggle type="text" [(state)]="active['displays'][i]" active="On" inactive="Off"></toggle></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!loading['displays']&&(!output_list||output_list.length <= 0)">
+                <div class="icon"><i class="material-icons">highlight_off</i></div>
+                <div class="text">No displays found</div>
+            </div>
+            <div class="no-content" *ngIf="loading['displays']">
+                <div class="icon" style="font-size: 1.0em;padding: 3.5em 0; "><spinner type="dot-bounce" color="rgba(0,0,0, 0.24)"></spinner></div>
+                <div class="text">Loading displays...</div>
+            </div>
+        </div>
+    </div>
+    <div class="levels block">
+        <div class="header"></div>
+        <div class="content">
+        </div>
+    </div>
+    <div class="blinds block">
+        <div class="header">Blinds Control</div>
+        <div class="content">
+            <div class="hidden" binding [(value)]="blinds" (valueChange)="setupBlindsList($event)" [sys]="system" mod="System" [index]="1" bind="blinds"></div>
+            <div class="content" *ngIf="!loading['blinds']&&blinds_list&&blinds_list.length > 0">
+                <div class="level-list">
+                    <div class="display" *ngFor="let b of blinds_list;let i = index">
+                        <div class="text">{{b.name}}</div>
+                        <div class="status">
+                            <btn *ngIf="b.item.up" btnType="raised" color="teal" (onClick)="active['blinds'][i].up=!active['blinds'][i].up">
+                                <div class="hidden" [hidden] binding [(value)]="active['blinds'][i].up" [sys]="system" [mod]="b.mod" [index]="b.index" bind="blind_state" [exec]="b.item.up.func" [params]="b.item.up.args"></div>
+                                Up
+                            </btn>
+                            <btn *ngIf="b.item.down" btnType="raised" color="teal" (onClick)="active['blinds'][i].down=!active['blinds'][i].down">
+                                <div class="hidden" [hidden] binding [(value)]="active['blinds'][i].down" [sys]="system" [mod]="b.mod" [index]="b.index" bind="blind_state" [exec]="b.item.down.func" [params]="b.item.down.args"></div>
+                                Down
+                            </btn>
+                            <btn *ngIf="b.item.stop" btnType="raised" color="red" (onClick)="active['blinds'][i].stop=!active['blinds'][i].stop">
+                                <div class="hidden" [hidden] binding [(value)]="active['blinds'][i].stop" [sys]="system" [mod]="b.mod" [index]="b.index" bind="blind_state" [exec]="b.item.stop.func" [params]="b.item.stop.args"></div>
+                                Stop
+                            </btn>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!loading['blinds']&&(!blinds_list||blinds_list.length <= 0)">
+                <div class="icon"><i class="material-icons">highlight_off</i></div>
+                <div class="text">No blinds found</div>
+            </div>
+            <div class="no-content" *ngIf="loading['blinds']">
+                <div class="icon" style="font-size: 1.0em;padding: 3.5em 0; "><spinner type="dot-bounce" color="rgba(0,0,0, 0.24)"></spinner></div>
+                <div class="text">Loading blinds...</div>
+            </div>
+        </div>
+    </div>
+</div>

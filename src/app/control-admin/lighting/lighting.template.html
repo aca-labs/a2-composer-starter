@@ -1,0 +1,74 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   11/01/2017 1:31 PM
+@Email:  alex@yuion.net
+@Filename: audio.template.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 03/02/2017 1:26 PM
+-->
+
+<div #main class="lighting">
+    <div class="standard block">
+        <div class="header">Standard Presets</div>
+        <div class="content">
+            <div class="hidden" binding [(value)]="lights" [sys]="system" mod="System" [index]="1" bind="lights"></div>
+            <div class="hidden" binding [(value)]="std" (valueChange)="loading['std']=false" [sys]="system" mod="System" [index]="1" bind="light_level" exec="$lights_to"></div>
+            <div class="content" *ngIf="!loading['std']&&lights&&lights.levels&&lights.levels.length > 0">
+                <div class="level-list">
+                    <div class="level" *ngFor="let l of lights.levels" [class.active]="l.name===std" (tap)="std=l.name">{{l.name}}</div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!loading['std']&&(!lights||!lights.levels||lights.levels.length <= 0)">
+                <div class="icon"><i class="material-icons">highlight_off</i></div>
+                <div class="text">No standard presets found</div>
+            </div>
+            <div class="no-content" *ngIf="loading['std']">
+                <div class="icon" style="font-size: 1.0em;padding: 3.5em 0; "><spinner type="dot-bounce" color="rgba(0,0,0, 0.24)"></spinner></div>
+                <div class="text">Loading standard presets...</div>
+            </div>
+        </div>
+    </div>
+    <div class="hidden" binding [(value)]="lights_evt" (valueChange)="loading['fader']=false" [sys]="system" mod="System" [index]="1" bind="lights_events"></div>
+    <div class="levels block">
+        <div class="header">Spot Faders</div>
+        <div class="content">
+            <div class="fader-list" *ngIf="!loading['fader']&&lights_evt&&lights_evt.faders&&lights_evt.faders.length > 0">
+                <div class="fader" *ngFor="let f of lights_evt.faders;let i = index">
+                    <div class="name">{{f.name}}</div>
+                    <div class="fade-level">
+                        <div class="hidden" binding [(value)]="fader_value[i]" [sys]="system" mod="Lighting" [index]="1" [bind]="'area'+f.id+'_level'" exec="$lights_to" [params]="['area'+f.id+'_level', fader_value[i]]"></div>
+                        <slider [value]="fader_value[i]" (delayValueChange)="fader_value[i]=$event" align="vertical" [max]="f.max===undefined||f.max===null?val_max:f.max" [min]="f.min===undefined||f.min===null?val_min:f.min"></slider>
+                    </div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!loading['fader']&&(!lights_evt||!lights_evt.faders||lights_evt.faders.length <= 0)">
+                <div class="icon"><i class="material-icons">highlight_off</i></div>
+                <div class="text">No lights found</div>
+            </div>
+            <div class="no-content" *ngIf="loading['fader']">
+                <div class="icon" style="font-size: 1.0em;padding: 3.5em 0; "><spinner type="dot-bounce" color="rgba(0,0,0, 0.24)"></spinner></div>
+                <div class="text">Loading lights...</div>
+            </div>
+        </div>
+    </div>
+    <div class="events block">
+        <div class="header">Production Presets</div>
+        <div class="content">
+            <div class="hidden" binding [(value)]="group" [sys]="system" mod="System" [index]="1" bind="lighting_group"></div>
+            <div class="hidden" binding [(value)]="evt" (valueChange)="loading['evt']=false" [sys]="system" mod="Lighting" [index]="1" bind="light_level" exec="$trigger" [params]="[group, lvl?.trigger]"></div>
+            <div class="content" *ngIf="!loading['evt']&&lights_evt&&lights_evt.presets&&lights_evt.presets.length > 0">
+                <div class="level-list">
+                    <div class="level" *ngFor="let l of lights_evt.presets" [class.active]="l.name===evt" (tap)="lvl=l;evt=l.name">{{l.name}}</div>
+                </div>
+            </div>
+            <div class="no-content" *ngIf="!loading['evt']&&(!lights_evt||!lights_evt.presets||lights_evt.presets.length <= 0)">
+                <div class="icon"><i class="material-icons">highlight_off</i></div>
+                <div class="text">No production presets found</div>
+            </div>
+            <div class="no-content" *ngIf="loading['evt']">
+                <div class="icon" style="font-size: 1.0em;padding: 3.5em 0; "><spinner type="dot-bounce" color="rgba(0,0,0, 0.24)"></spinner></div>
+                <div class="text">Loading production presets...</div>
+            </div>
+        </div>
+    </div>
+</div>

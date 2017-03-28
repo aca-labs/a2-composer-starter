@@ -1,0 +1,19 @@
+// @Author: Alex Sorafumo
+// @Date:   03/02/2017 2:40 PM
+// @Email:  alex@yuion.net
+// @Filename: confirm.styles.scss
+// @Last modified by:   Alex Sorafumo
+// @Last modified time: 03/02/2017 3:00 PM
+
+div.confirm {
+    & .body {
+        min-height: 5.0em;
+        font-size: 1.1em;
+    }
+
+    & .footer {
+        display: flex;
+        justify-content: flex-end;
+        font-size: 0.6em;
+    }
+}

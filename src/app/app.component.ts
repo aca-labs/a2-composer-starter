@@ -10,7 +10,7 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ModalService, NotificationService } from '@aca-1/a2-widgets';
-import { CommsService, SystemsService } from '@aca-1/a2-composer';
+import { CommsService, SystemsService, MOCK_REQ_HANDLER } from '@aca-1/a2-composer';
 import './shared/mock-system';
 
 import { AppService, CacheService } from './services';
@@ -87,5 +87,6 @@ export class AppComponent {
         }
             // Setup composer
         this.systems.setup(config);
+        MOCK_REQ_HANDLER.register('/control/api/systems/sys-B5/count', false, { status: 200, code: 200, count: 4 });
     }
 }

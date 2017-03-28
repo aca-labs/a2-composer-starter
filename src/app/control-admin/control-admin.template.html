@@ -1,0 +1,72 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   27/09/2016 5:38 PM
+@Email:  alex@yuion.net
+@Filename: control-admin.template.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 03/02/2017 1:54 PM
+-->
+
+<div class="complex">
+    <div class="main-body" *ngIf="system&&system!==''&&title&&title!==''">
+        <div class="content">
+            <div class="content-box">
+                <div class="content" *ngIf="!loading && display_cnt > 0">
+                    <div class="list">
+                        <div class="display" *ngFor="let i of outputs;">
+                            <div class="info">
+                                <div class="text">{{display[i].title||('Display ' + (i+1))}}</div>
+                                <div binding [(value)]="display[i].active" [sys]="system" mod="Display" [index]="i+1" bind="power" exec=""></div>
+                                <div class="status"><toggle type="text" [(state)]="display[i].active" active="On" inactive="Off"></toggle></div>
+                            </div>
+                            <div class="volume-control">
+                                <div binding [(value)]="display[i].max" [sys]="system" mod="Display" [index]="i+1" bind="volume_max"></div>
+                                <div binding [(value)]="display[i].min" [sys]="system" mod="Display" [index]="i+1" bind="volume_min"></div>
+                                <div class="mute">
+                                    <div hidden binding [(value)]="display[i].mute" [sys]="system" mod="Display" [index]="i+1" bind="audio_mute" exec="mute_audio" ></div>
+                                    <div class="icon" [class.output-mute]="display[i].mute" [class.output]="!display[i].mute" (tap)="display[i].mute=!display[i].mute">
+                                        <i class="material-icons">{{(display[i].mute||(display[i].volume<=(display[i].min ? display[i].min : vol_min)))?'volume_off':'volume_up'}}</i>
+                                    </div>
+                                </div>
+                                <div class="volume">
+                                    <div binding [(value)]="display[i].volume" [sys]="system" mod="Display" [index]="i+1" bind="volume" exec=""></div>
+                                    <slider [value]="display[i].volume" (valueChange)="display[i].volume=$event" [max]="display[i].max !== undefined ? display[i].max : vol_max" [min]="display[i].min !== undefined ? display[i].min : vol_min"></slider>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topbar">
+            <!--div class="logo" [style.background-image]="'url('+image+')'" (click)="navigate('')"></div-->
+            <div class="heading">{{title}}</div>
+            <!--div class="options">
+                <div class="option"><i class="material-icons" (tap)="link();">link</i></div>
+            </div-->
+        </div>
+    </div>
+    <div binding [(value)]="title" [sys]="system" mod="System" bind="name"></div>
+    <!--div class="binding" binding [(value)]="state" [sys]="system" mod="System" bind="state" [exec]="started?'shutdown':'powerup'"></div>
+    <div class="start-overlay" *ngIf="state!=='online'&&system&&system!==''&&title&&title!==''" (tap)="start()">
+        <div class="start-block">
+            <h2>Touch to Start</h2>
+            (this will turn on the Displays)
+            <p><strong>{{title}}</strong></p>
+        </div>
+    </div-->
+	<div class="app" *ngIf="!system||system===''||!title||title===''">
+		<div class="loading center">
+            <div class="text">
+                <div class="header">Connecting to system{{system && system !== '' ? '('+system+')':''}}...</div>
+                <div class="body">
+                    Attempting to connect to the control server.<br>
+                    If this message persists, check you network connection and then try reloading this page
+                </div>
+            </div>
+			<div class="bounce">
+				<div class="circle"><div class="inner"></div></div>
+			</div>
+		</div>
+	</div>
+</div>

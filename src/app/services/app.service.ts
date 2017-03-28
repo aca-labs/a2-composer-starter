@@ -15,7 +15,6 @@ import { SystemsService } from '@aca-1/a2-composer';
 import { NotificationService } from '@aca-1/a2-widgets';
 
 import { SettingsService } from './settings.service';
-import { BookingService } from './booking.service';
 
 @Injectable()
 export class AppService{
@@ -29,7 +28,7 @@ export class AppService{
     			private router: Router,
     			private route: ActivatedRoute, 
     			private notify: NotificationService,
-    			private settings: SettingsService,
+    			private settings: SettingsService, 
     			private systems: SystemsService) {
         settings.parent = this;
 

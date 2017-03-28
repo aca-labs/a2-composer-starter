@@ -1,0 +1,47 @@
+<!--
+@Author: Alex Sorafumo <alex.sorafumo>
+@Date:   11/01/2017 1:31 PM
+@Email:  alex@yuion.net
+@Filename: switching.template.html
+@Last modified by:   Alex Sorafumo
+@Last modified time: 03/02/2017 12:36 PM
+-->
+
+<div class="switching">
+    <div class="sidebar">
+        <ul>
+            <li [class.active]="menu==='av'" (tap)="setMenuItem('av')">Audio &amp; Video</li>
+            <li [class.active]="menu==='audio'" (tap)="setMenuItem('audio')">Audio</li>
+            <li [class.active]="menu==='video'" (tap)="setMenuItem('video')">Video</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div #main class="main-area">
+            <div class="canvas">
+                <canvas #canvas width="1000" height="1000"></canvas>
+            </div>
+            <div class="input-list list">
+                <div class="hidden" binding [(value)]="sources" (valueChange)="setupLists()" [sys]="system" mod="System" [index]="1" bind="sources"></div>
+                <div class="input item" *ngFor="let input of input_list;let i = index;" [class.active]="cntr&&cntr.index===i&&cntr.type==='input'" (tap)="setConnect({ index:i, type:'input', item: input })">
+                    <div class="text">{{input.name}}</div>
+                    <div class="circle" [class.active]="cntr&&cntr.index===i&&cntr.type==='input'" [id]="'aca-switching-input-'+i">
+                        <div class="ring"  [class.active]="cntr&&cntr.index===i&&cntr.type==='input'" ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="output-list list">
+                <div class="hidden" binding [(value)]="outputs" (valueChange)="setupLists()" [sys]="system" mod="System" [index]="1" bind="outputs"></div>
+                <div class="output item" *ngFor="let o of output_list;let i = index;" [class.active]="cntr&&cntr.index===i&&cntr.type==='output'" (tap)="setConnect({ index:i, type:'output', item: o })">
+                    <div class="hidden" binding [(value)]="o.video" (valueChange)="updateLines()" [sys]="system" mod="Switcher" [index]="1" [bind]="'video' + o.output" [exec]="exec" [params]="getBoundValue(o)"></div>
+                    <div class="hidden" binding [(value)]="o.audio" (valueChange)="updateLines()" [sys]="system" mod="Switcher" [index]="1" [bind]="'audio' + o.output" [exec]="exec" [params]="getBoundValue(o)"></div>
+                    <div class="hidden" binding [value]="o.mute" [sys]="system" mod="Switcher" [index]="1" [bind]="'audio' + o.output" exec="$video_mute" [params]="[o.id]"></div>
+                    <div class="circle" [class.active]="cntr&&cntr.index===i&&cntr.type==='output'" [id]="'aca-switching-output-'+i">
+                        <div class="ring"  [class.active]="cntr&&cntr.index===i&&cntr.type==='output'" ></div>
+                    </div>
+                    <div class="text">{{o.name}}</div>
+                    <div class="clear" (tap)="clearOutput(i, o)"><i class="material-icons">close</i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
