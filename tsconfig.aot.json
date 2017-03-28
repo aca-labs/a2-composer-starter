@@ -29,7 +29,7 @@
             "source-map",
             "uglify-js",
             "webpack",
-            "systemjs"
+            "faker"
         ]
     },
     "files": [

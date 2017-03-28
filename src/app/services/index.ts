@@ -1,10 +1,10 @@
 /**
-* @Author: Alex Sorafumo <alex.sorafumo>
-* @Date:   11/01/2017 12:24 PM
+* @Author: Alex Sorafumo
+* @Date:   28/10/2016 2:30 PM
 * @Email:  alex@yuion.net
 * @Filename: index.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:13 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 01/02/2017 10:03 AM
 */
 
 import { AppService } from './app.service';
@@ -15,8 +15,8 @@ export * from './app.service';
 export * from './cache.service';
 export * from './settings.service';
 
-export const APP_SERVICES: any[] = [
+export const SERVICES: any[] = [
 	AppService,
-	CacheService,
-	SettingsService
+    CacheService,
+    SettingsService
 ];

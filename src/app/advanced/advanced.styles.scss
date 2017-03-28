@@ -112,24 +112,29 @@ div.complex {
 
     & .main-body {
         position: absolute;
-        top: 0; bottom: 0;
+        top: 4.0em; bottom: 0;
         left: 0; right: 0;
         padding-top: 4.0em;
         background-color: rgba(0,0,0,0.1);
         overflow: auto;
         & .content {
-            padding: 1.5em;
+	        position: absolute;
+	        top: 1.0em; bottom: 2.5em;
+	        left: 1.0em; right: 1.0em;
             & .content-box {
-                min-width: 20.0em;
-                max-width: 100%;
-                min-height: 18.0em;
+		        position: absolute;
+		        top: 0; bottom: 0;
+		        left: 0; right: 0;
                 background-color: #FFFFFF;
                 border-radius: 0.1em;
                 box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.1);
                 & .displays {
-                    width: 100%;
+                	position: absolute;
+                	bottom: 0;
+                	left: 0;
+                	right: 0;
                     border-top: 0.1em solid rgba(0,0,0,0.1);
-                    min-height: 5.0em;
+                    height: 11.0em;
                     display: flex;
                     flex-wrap: wrap;
                     text-align: center;
@@ -266,7 +271,11 @@ div.complex {
         }
 
         & .footer {
-            padding: 0.5em;
+        	position: absolute;
+        	bottom: 0;
+        	left: 0;
+        	right: 0;
+        	padding: 0.5em;
             color: rgba(0,0,0,0.54);
         }
     }

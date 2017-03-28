@@ -1,4 +1,5 @@
 /**
+* @author: @AngularClass
 */
 
 const helpers = require('./helpers');
@@ -18,6 +19,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 * Webpack Constants
 */
 const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
+const ENTRY_TYPE = process.env.WP_ENTRY_TYPE;
 const commonConfig = require('./webpack.common.js'); // the settings that are common to prod and dev
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
@@ -29,12 +31,30 @@ const METADATA = webpackMerge(metadata, {
     HMR: false
 });
 
+const ENTRY = {
+	aot: {
+        'polyfills': './.build/polyfills.browser.ts',
+        'vendor':    './.build/vendor.browser.ts',
+        'main':      './.build/main.aot.browser.ts'
+    },
+	jit: {
+        'polyfills': './.build/polyfills.browser.ts',
+        'vendor':    './.build/vendor.browser.ts',
+        'main':      './.build/main.browser.ts'
+    },
+	worker: {
+        'app': './.build/app.ts',
+        'worker': './.build/main.webworker.ts'
+
+    },
+}
+
 /**
 * Webpack configuration
 *
 * See: http://webpack.github.io/docs/configuration.html#cli
 */
-module.exports = function(options) {
+module.exports = function(options, type) {
     return webpackMerge(commonConfig({env: ENV}), {
         /*
         * The entry point for the bundle
@@ -42,11 +62,7 @@ module.exports = function(options) {
         *
         * See: http://webpack.github.io/docs/configuration.html#entry
         */
-        entry: {
-            'polyfills': './.build/polyfills.browser.ts',
-            'vendor':    './.build/vendor.browser.ts',
-            'main':      './.build/main.browser.ts'
-        },
+        entry: ENTRY[type],
 
         /**
         * Developer tool to enhance debugging
@@ -166,6 +182,7 @@ module.exports = function(options) {
 
                 }
             }),
+            //new OfflinePlugin()
         ],
 
         /**

@@ -2,8 +2,8 @@
 // @Date:   24/09/2016 1:46 PM
 // @Email:  alex@yuion.net
 // @Filename: app.style.scss
-// @Last modified by:   alex.sorafumo
-// @Last modified time: 09/02/2017 1:12 PM
+// @Last modified by:   Alex Sorafumo
+// @Last modified time: 30/01/2017 1:39 PM
 
 @import 'ui-vars';
 
@@ -77,19 +77,6 @@
     text-align: center;
 }
 
-.version {
-	position: fixed;
-	padding: 0.5em;
-	color: rgba(0, 0, 0, 0.8);
-	background-color: rgba(255, 255, 255, 0.9);
-	box-shadow: 0 0.1em 0.1em 1px rgba(0,0,0,0.2);
-	border-radius: 0.2em;
-	bottom: 0.5em;
-	left: 0.5em;
-	font-size: 3mm;
-	z-index: 99999;
-}
-
 @media screen and (max-width: 720px) {
     .mobile-hide {
         display: none;
@@ -153,10 +140,43 @@
 	font-size: 1.0em;
 }
 
+.display-icon {
+    flex-grow: 0 !important;
+    height: 1.0em;
+    width: 1.0em;
+    margin: 0.2em 0;
+    font-size: 1.4em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &.info {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0xMSAxN2gydi02aC0ydjZ6bTEtMTVDNi40OCAyIDIgNi40OCAyIDEyczQuNDggMTAgMTAgMTAgMTAtNC40OCAxMC0xMFMxNy41MiAyIDEyIDJ6bTAgMThjLTQuNDEgMC04LTMuNTktOC04czMuNTktOCA4LTggOCAzLjU5IDggOC0zLjU5IDgtOCA4ek0xMSA5aDJWN2gtMnYyeiIvPgo8L3N2Zz4=);
+    }
+    &.error {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0xIDE1aC0ydi0yaDJ2MnptMC00aC0yVjdoMnY2eiIvPgo8L3N2Zz4=);
+    }
+    &.success {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik05IDE2LjJMNC44IDEybC0xLjQgMS40TDkgMTkgMjEgN2wtMS40LTEuNEw5IDE2LjJ6Ii8+Cjwvc3ZnPg==);
+    }
+    &.success-tick {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNENBRjUwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4KICAgIDxwYXRoIGQ9Ik05IDE2LjJMNC44IDEybC0xLjQgMS40TDkgMTkgMjEgN2wtMS40LTEuNEw5IDE2LjJ6Ii8+Cjwvc3ZnPgo=);
+    }
+    &.error-cross {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRjQ0MzM2IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xOSA2LjQxTDE3LjU5IDUgMTIgMTAuNTkgNi40MSA1IDUgNi40MSAxMC41OSAxMiA1IDE3LjU5IDYuNDEgMTkgMTIgMTMuNDEgMTcuNTkgMTkgMTkgMTcuNTkgMTMuNDEgMTJ6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo=);
+    }
+    &.close-cross {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xOSA2LjQxTDE3LjU5IDUgMTIgMTAuNTkgNi40MSA1IDUgNi40MSAxMC41OSAxMiA1IDE3LjU5IDYuNDEgMTkgMTIgMTMuNDEgMTcuNTkgMTkgMTkgMTcuNTkgMTMuNDEgMTJ6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==);
+    }
+    &.edit {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0zIDE3LjI1VjIxaDMuNzVMMTcuODEgOS45NGwtMy43NS0zLjc1TDMgMTcuMjV6TTIwLjcxIDcuMDRjLjM5LS4zOS4zOS0xLjAyIDAtMS40MWwtMi4zNC0yLjM0Yy0uMzktLjM5LTEuMDItLjM5LTEuNDEgMGwtMS44MyAxLjgzIDMuNzUgMy43NSAxLjgzLTEuODN6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==);
+    }
+}
+
 .error-notify, .info-notify, .success-notify {
     color: #FFFFFF;
     text-align: left;
 	box-shadow: 0 0.1em 0.2em 0.1em rgba(0,0,0,0.2);
+    padding: 0.1em 0.2em;
 	& .close-btn {
 		color: #FFFFFF;
 		&:hover {
@@ -171,11 +191,12 @@
             padding-right: 0.2em;
     		word-wrap: normal;
             vertical-align: middle;
-            &.icon {
+            &.display-icon {
                 padding-top: 0.4em;
                 padding-right: 0.7em;
                 flex-grow: 0;
                 flex-shrink: 0;
+                font-size: 2.5em;
             }
         }
 
@@ -200,6 +221,28 @@
 .aca.btn .raised button {
     min-width: 8.0em !important;
 }
+
+.version {
+    position: fixed;
+    right: 0.3em;
+    bottom: 7.2em;
+    color: #37474F;
+    font-size: 0.7em;
+
+}
+
+.build {
+    position: fixed;
+    right: 5.0em;
+    bottom: 7.2em;
+    color: #37474F;
+    font-size: 0.7em;
+}
+
+div.aca.btn.disabled button.aca {
+	background-color: rgba(0,0,0,0.1) !important;
+}
+
 
 @media screen and (max-width: 720px) {
     .app {

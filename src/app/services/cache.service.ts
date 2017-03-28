@@ -3,8 +3,8 @@
 * @Date:   01/02/2017 9:55 AM
 * @Email:  alex@yuion.net
 * @Filename: cache.service.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:13 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 01/02/2017 1:28 PM
 */
 
 import { Injectable } from '@angular/core';

@@ -1,8 +1,10 @@
 {
-	"app": "A2-STARTER",
 	"version": "0.2.0",
-	"build": "2017-02-09.v1",
+	"build": "2017-03-28.v1",
 	"env": "dev",
 	"debug": true,
-	"debug_module": ["A2_CS"]
+    "logo":"http://static1.squarespace.com/static/52142586e4b0c09536a144ad/t/561327b2e4b06f521722e448/1469084115046/?format=1500w",
+    "domain":"control.yourdomain.com",
+    "protocol":"https:",
+    "app_name":"Starter Kit"
 }

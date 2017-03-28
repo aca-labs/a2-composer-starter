@@ -1,10 +1,10 @@
 /**
 * @Author: Alex Sorafumo
-* @Date:   16/01/2017 9:43 AM
+* @Date:   30/09/2016 2:42 PM
 * @Email:  alex@yuion.net
 * @Filename: vendor.browser.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:12 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 06/02/2017 4:20 PM
 */
 
 // For vendors for example jQuery, Lodash, angular2-jwt just import them here unless you plan on
@@ -26,12 +26,12 @@ import '@angular/router';
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
-import 'hammerjs';
-import 'moment';
-import 'moment-timezone'
 
 // Other libraries
 declare let ENV: any;
+
+import 'hammerjs';
+
 
 if ('production' === ENV) {
   // Production

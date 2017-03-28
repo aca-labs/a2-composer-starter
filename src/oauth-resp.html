@@ -1,12 +1,3 @@
-<!--
-@Author: Alex Sorafumo <alex.sorafumo>
-@Date:   16/01/2017 9:43 AM
-@Email:  alex@yuion.net
-@Filename: oauth-resp.html
-@Last modified by:   alex.sorafumo
-@Last modified time: 09/02/2017 1:12 PM
--->
-
 <!doctype html>
 <html>
     <head>
@@ -37,16 +28,33 @@
                 console.log('Main Window/Tab');
                 var data = window.location.hash ? window.location.hash : window.location.search;
                 var loc = localStorage.getItem('oauth_redirect');
+                console.log(loc);
                 if(loc){
                     console.log('Redirecting to ' + loc);
-                    if(loc.indexOf('#') >= 0) loc = loc.split('#')[0];
                     if(loc.indexOf('?') >= 0) loc = loc.split('?')[0];
-                    if(loc.indexOf('#') >= 0) {
+                    console.log(data);
+                    var oauth_data = [];
+                    if(data.indexOf('#') >= 0) {
                             // Remove hash if data is a hash
-                        data = '#' + data.replace(new RegExp('#', 'g'), '');
-                    } else if(loc.indexOf('?') >= 0){
+                        data = '?' + data.replace(new RegExp('#', 'g'), '');
+                        oauth_data = data.split('?')[1].split('&');
+                    } else if(data.indexOf('?') >= 0){
                             // Remove question mark if data is query.
-                        data = '?' + data.replace(new RegExp('?', 'g'), '');
+                        data = '?' + data.replace(new RegExp('\\?', 'g'), '');
+                        oauth_data = data.split('?')[1].split('&');
+                    }
+                    var oauth_resp = {};
+                    console.log(oauth_data);
+                    if(oauth_data){
+                        for(var i = 0; i < oauth_data.length; i++) {
+                            let parts = oauth_data[i].split('=');
+                            if(parts.length > 1){
+                                oauth_resp[parts[0]] = parts[1];
+                            }
+                        }
+                        if(sessionStorage) {
+                            sessionStorage.setItem('OAUTH.params', JSON.stringify(oauth_resp));
+                        }
                     }
                     window.location.href = loc + data;
                 } else window.location.href = origin + data;

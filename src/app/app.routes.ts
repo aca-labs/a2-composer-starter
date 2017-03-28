@@ -9,13 +9,13 @@
 
 import { Routes, RouterModule } from '@angular/router';
 import { SimpleComponent } from './simple';
-import { AdvancedAppComponent } from './advanced';
+import { AdvancedComponent } from './advanced';
 import { NoContent } from './errors';
 
 
 export const ROUTES: Routes = [
   { path: '',      component: SimpleComponent },
-  { path: 'complex',  component: AdvancedAppComponent },
-  { path: 'complex/:tab_id',  component: AdvancedAppComponent },
+  { path: 'complex',  component: AdvancedComponent },
+  { path: 'complex/:tab_id',  component: AdvancedComponent },
   { path: '**',    component: NoContent },
 ];

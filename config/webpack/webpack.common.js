@@ -153,7 +153,7 @@ module.exports = function(options) {
             *
             * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
             */
-            new ForkCheckerPlugin(),
+            //new ForkCheckerPlugin(),
             /*
             * Plugin: CommonsChunkPlugin
             * Description: Shares common code between the pages.
@@ -162,8 +162,8 @@ module.exports = function(options) {
             * See: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
             * See: https://github.com/webpack/docs/wiki/optimization#multi-page-app
             */
-            new webpack.optimize.CommonsChunkPlugin({
-                name: ['polyfills', 'vendor'].reverse()
+            /*new webpack.optimize.CommonsChunkPlugin({
+                name: ['app', 'webworker'].reverse()
             }),
 
             /**
@@ -193,7 +193,13 @@ module.exports = function(options) {
             }, {
                 from: '.build/oauth-resp.html',
                 to: 'oauth-resp.html'
-            }]),
+            }/*, {
+                from: '.build/assets/service-worker.js',
+                to: 'sw.js'
+            }, {
+                from: '.build/assets/main.manifest',
+                to: 'main.webmanifest'
+            }*/]),
 
             /*
             * Plugin: HtmlHeadConfigPlugin

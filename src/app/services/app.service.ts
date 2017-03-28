@@ -1,64 +1,109 @@
 /**
-* @Author: Alex Sorafumo
-* @Date:   13/09/2016 3:01 PM
+* @Author: Alex Sorafumo <alex.sorafumo>
+* @Date:   12/01/2017 2:25 PM
 * @Email:  alex@yuion.net
 * @Filename: app.service.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:13 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 03/02/2017 10:25 AM
 */
 
-import { Injectable, ViewContainerRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Injectable, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { NotificationService, ModalService } from '@aca-1/a2-widgets';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { SystemsService } from '@aca-1/a2-composer';
+import { NotificationService } from '@aca-1/a2-widgets';
 
 import { SettingsService } from './settings.service';
+import { BookingService } from './booking.service';
 
 @Injectable()
-export class AppService {
-	site_name: string = 'CoTag Media';
-	view: ViewContainerRef = null;
-	constructor(private title: Title,
-				private router: Router,
-				private modal: ModalService,
-				private notify: NotificationService,
-				private settings: SettingsService) {
-	}
+export class AppService{
 
-	get Settings() {
-		return this.settings;
-	}
+	r_event: any = null;
+	private _system: string = '';
+	private sys_change: any = null;
+	private _sys_obs: any = null;
 
-	get Modals() {
-		return this.modal;
-	}
+    constructor(private _title: Title, 
+    			private router: Router,
+    			private route: ActivatedRoute, 
+    			private notify: NotificationService,
+    			private settings: SettingsService,
+    			private systems: SystemsService) {
+        settings.parent = this;
 
-	setView(view: any) {
-		this.view = view;
-		this.modal.view = view;
-		this.notify.view = view;
-		this.notify.canClose(false, 4000);
-	}
+        this._sys_obs = new Observable((observer: any) => {
+        	this.sys_change = observer;
+            this.sys_change.next(this._system);
+        });
+    }
 
-	setTitle(title: string) {
-		console.log('Set title to:', title);
-		this.title.setTitle(title + ' | ' + this.site_name);
-	}
+    initSystem(sys: string) {
+    	this._system = sys;
+        if(!this._system || this._system === '') {
+            if(localStorage) {
+                this._system = localStorage.getItem('ACA.CONTROL.system');
+                if(this.sys_change) {
+                    this.sys_change.next(this._system);
+                }
+            }
+            if(!this._system || this._system === '') {
+                this.navigate('bootstrap');
+            } else {
+                this.navigate(this._system);
+            }
+        } else {
+            if(this.sys_change) {
+                this.sys_change.next(this._system);
+            }
+        }
+    }
 
-	navigate(route: string, params: any = {}) {
-		console.log('Navigate to:', route);
-		this.router.navigate([ route ], { queryParams: params });
-	}
+    ngOnInit() {
+    }
 
-	info(msg: string) {
-		this.notify.add(`<div class="icon"><i class="material-icons">info_outline</i></div><div>${msg}</div>`, 'info-notify');
-	}
+    ngOnDestroy() {
+    	this.sys_change.complete();
+    }
+
+    get Settings() {
+        return this.settings;
+    }
+
+    get Systems() {
+    	return this.systems;
+    }
+
+    get system() {
+    	return this._sys_obs;
+    }
+
+    set title(str: string) {
+    	this._title.setTitle(`${str} | Control Admin`);
+    }
+
+    navigate(path: string, query?: any) {
+        if(!this.systems.resources.authLoaded){
+            this.router.navigate([path], { queryParams: query ? query : {} });
+        } else {
+            this.router.navigate([path]);
+        }
+    }
 
 	error(msg: string) {
-		this.notify.add(`<div class="icon"><i class="material-icons">error</i></div><div>${msg}</div>`, 'error-notify');
+		let message = msg ? msg : `Error`;
+		this.notify.add(`<div class="display-icon error" style="font-size:2.0em"></div><div>${message}</div>`, 'error-notify');
 	}
 
 	success(msg: string) {
-		this.notify.add(`<div class="icon"><i class="material-icons">done</i></div><div>${msg}</div>`, 'success-notify');
+		let message = msg ? msg : `Success`;
+		this.notify.add(`<div class="display-icon success" style="font-size:2.0em"></div><div>${message}</div>`, 'success-notify');
 	}
-};
+
+	info(msg: string) {
+		let message = msg ? msg : `Information`;
+		this.notify.add(`<div class="display-icon info" style="font-size:2.0em"></div></div><div>${message}</div>`, 'info-notify');
+	}
+
+}

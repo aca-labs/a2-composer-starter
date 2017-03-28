@@ -3,8 +3,8 @@
 * @Date:   09/12/2016 3:33 PM
 * @Email:  alex@yuion.net
 * @Filename: settings.service.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:13 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 03/02/2017 9:52 AM
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-const app_name = 'A2-STARTER';
+const app_name = 'STARTER_KIT';
 const reserved_keys = ['route', 'query', 'store'];
 
 @Injectable()

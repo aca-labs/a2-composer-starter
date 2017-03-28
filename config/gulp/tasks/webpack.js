@@ -7,15 +7,19 @@ var WebpackDevServer = require("webpack-dev-server");
 var url = require('url');
 var http = require('http');
 
-var config_dev = require('../../webpack/webpack.dev.js')({env: 'development'});
-var config_prod = require('../../webpack/webpack.prod.js')({env: 'production'});
-var config_test = require('../../webpack/webpack.prod.js')({env: 'testing'});
+var config_dev = require('../../webpack/webpack.dev.js')
+var config_prod = require('../../webpack/webpack.prod.js')
+var config_test = require('../../webpack/webpack.test.js')
+var metadata = require('../../webpack/metadata.js');
 
-gulp.task('webpack:dev', ['build:watch'], function() {
+gulp.task('serve:webpack:dev', ['build:watch'], function() {
+    process.env.NODE_ENV = "development";
+    process.env.ENTRY_TYPE = metadata.ENTRY_TYPE;
     // Start a webpack-dev-server
-    var compiler = webpack(config_dev);
+    var config = config_dev({env: 'development'}, metadata.ENTRY_TYPE);
+    var compiler = webpack(config);
 
-    var server = new WebpackDevServer(compiler, config_dev.devServer);
+    var server = new WebpackDevServer(compiler, config.devServer);
 
     server.use('/', function (req, resp, next) {
         var opts = url.parse('http://localhost:3000');
@@ -60,7 +64,52 @@ gulp.task('webpack:dev', ['build:watch'], function() {
     });
 });
 
+gulp.task('webpack:dev', ['ngc'], function() {
+    process.env.NODE_ENV = "development";
+    process.env.ENTRY_TYPE = metadata.ENTRY_TYPE;
+    var config = config_dev({env: 'development'}, metadata.ENTRY_TYPE);
+    // run webpack
+    webpack(config, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            colors: true
+        }));
+        //callback();
+    });
+});
+
 gulp.task('webpack:prod', ['ngc'], function() {
+    process.env.NODE_ENV = "production";
+    process.env.ENTRY_TYPE = metadata.ENTRY_TYPE;
+    var config = config_prod({env: 'production'}, metadata.ENTRY_TYPE);
+    // run webpack
+    webpack(config, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            colors: true
+        }));
+        //callback();
+    });
+});
+
+gulp.task('webpack:jit', ['ngc'], function() {
+    process.env.NODE_ENV = "production";
+    process.env.ENTRY_TYPE = 'jit';
+    var config = config_prod({env: 'production'}, 'jit');
+    // run webpack
+    webpack(config, function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            colors: true
+        }));
+        //callback();
+    });
+});
+
+gulp.task('webpack:aot', ['ngc'], function() {
+    process.env.NODE_ENV = "production";
+    process.env.ENTRY_TYPE = 'aot';
+    var config = config_prod({env: 'production'}, 'aot');
     // run webpack
     webpack(config_prod, function(err, stats) {
         if(err) throw new gutil.PluginError("webpack", err);

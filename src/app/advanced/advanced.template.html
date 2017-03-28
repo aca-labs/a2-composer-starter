@@ -39,7 +39,7 @@
                     <tab-body id="0">
                         <div class="tab-ctnt">
                             <ol>
-                                <li>Open <strong>MirrorOp</strong> on you laptop</li>
+                                <li>Open <strong>App</strong> on you laptop</li>
                                 <li>Select <strong>space name</strong>(e.g. Burleigh) into <strong>input hostname or IP</strong></li>
                                 <li>Select <strong>Connect</strong></li>
                                 <li>Enter <strong>4-digit code</strong> on the <strong>Display</strong></li>
@@ -102,7 +102,7 @@
                             <div class="item options">
                                 <btn btnType="raised" color="teal" [disabled]="!phone_num||phone_num===''"><i class="material-icons">touch_app</i> Dial</btn><br><br>
                                 <btn btnType="raised" color="teal" [disabled]="in_call"><i class="material-icons">call_end</i> Hang Up</btn><br><br>
-                                <btn btnType="raised" [color]="mic_on ? 'teal' : 'red'" [disabled]="in_call" (onClick)="mic_on=!mic_on"><i class="material-icons">{{mic_on ? 'mic' : 'mic_off'}}</i> Mute Mics</btn>
+                                <btn-toggle [(model)]="mic_on"><i class="material-icons">{{mic_on ? 'mic' : 'mic_off'}}</i> Mute Mics</btn-toggle>
                             </div>
                         </div>
                     </tab-body>

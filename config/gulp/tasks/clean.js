@@ -1,12 +1,3 @@
-/**
-* @Author: Alex Sorafumo
-* @Date:   19/10/2016 1:20 PM
-* @Email:  alex@yuion.net
-* @Filename: clean.js
-* @Last modified by:   Alex Sorafumo
-* @Last modified time: 31/01/2017 2:28 PM
-*/
-
 var gulp = require('gulp');
 var config = require('../config')();
 var del = require('del');

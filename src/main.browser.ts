@@ -1,15 +1,11 @@
 /**
 * @Author: Alex Sorafumo
-* @Date:   19/10/2016 1:20 PM
+* @Date:   30/09/2016 2:39 PM
 * @Email:  alex@yuion.net
 * @Filename: main.browser.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:12 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 30/01/2017 2:31 PM
 */
-
-/* IMPORT POLYFILLS AND VENDOR CODE */
-//import './polyfills.browser';
-//import './vendor.browser';
 
 /* BOOTSTRAP APPLICATION */
 import { enableProdMode } from '@angular/core';
@@ -28,4 +24,5 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 if(!window['wp.loaded']){
     window['wp.loaded'] = []
 }
+
 window['wp.loaded'].push('main');

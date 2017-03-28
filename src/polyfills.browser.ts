@@ -1,10 +1,10 @@
 /**
 * @Author: Alex Sorafumo
-* @Date:   19/10/2016 1:20 PM
+* @Date:   30/09/2016 2:43 PM
 * @Email:  alex@yuion.net
 * @Filename: polyfills.browser.ts
-* @Last modified by:   alex.sorafumo
-* @Last modified time: 09/02/2017 1:12 PM
+* @Last modified by:   Alex Sorafumo
+* @Last modified time: 30/01/2017 2:17 PM
 */
 
 // TODO(gdi2290): switch to DLLs
@@ -55,4 +55,5 @@ if ('production' === ENV) {
 if(!window['wp.loaded']){
     window['wp.loaded'] = []
 }
+
 window['wp.loaded'].push('polyfills');

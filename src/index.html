@@ -1,10 +1,10 @@
 <!--
 @Author: Alex Sorafumo
-@Date:   14/12/2016 7:54 AM
+@Date:   30/09/2016 3:05 PM
 @Email:  alex@yuion.net
 @Filename: index.html
-@Last modified by:   alex.sorafumo
-@Last modified time: 09/02/2017 1:12 PM
+@Last modified by:   Alex Sorafumo
+@Last modified time: 30/01/2017 2:17 PM
 -->
 
 <!DOCTYPE html>
@@ -12,10 +12,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-	<title><%= htmlWebpackPlugin.options.metadata.title %></title>
-
-	<meta name="description" content="<%= htmlWebpackPlugin.options.metadata.title %>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+	<title><%= htmlWebpackPlugin.options.title %></title>
 
 	<% if (webpackConfig.htmlElements.headTags) { %>
 	<!-- Configured Head Tags  -->
@@ -64,6 +63,7 @@
 		}
 
 		function loadJS(file, require) {
+			if(window['wp.loaded'] && window['wp.loaded'].indexOf(file) >= 0) return;
 			if(require && require !== '') {
 				if(window['wp.loaded'] && window['wp.loaded'].indexOf(require) >= 0) {
 					loadjscssfile(file + '.bundle.js', 'js');
@@ -76,29 +76,27 @@
 				loadjscssfile(file + '.bundle.js', 'js');
 			}
 		}
+
 		window.addEventListener("load", loadFiles, true);
 	</script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 	<style type="text/css">
-        *,.app,body{font-family:'Titillium Web',Helvetica,sans-serif}.app,.center{position:absolute}.app,body{margin:0;padding:0;font-size:2vmin}.app{top:0;left:0;bottom:0;right:0}*{box-sizing:border-box}.center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);margin:auto}.loading{display:inline-block;padding:1.5em;border-radius:1em;color:#000;font-size:10mm;text-align:center}.bounce,.bounce .circle,.bounce .circle .inner{height:4em;width:4em;border-radius:100%}.bounce .circle{-webkit-animation:sk-scaleout .8s infinite ease-in-out;animation:sk-scaleout .8s infinite ease-in-out}.bounce .circle .inner{background-color:#B71C1C}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}20%{opacity:1}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}20%{opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}
+		html, body { height: 100%; width: 100%; }
+        body{background-color: #EEE;}*,.app,body{font-family:'Ubuntu',Helvetica,sans-serif;font-weight: 300;}.app,.center{position:absolute}.app,body{margin:0;padding:0;font-size:2vmin}.app{top:0;left:0;bottom:0;right:0}*{box-sizing:border-box}.center{top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);margin:auto}.loading{display:inline-block;padding:1.5em;border-radius:1em;color:#000;font-size:10mm;text-align:center}.bounce,.bounce .circle,.bounce .circle .inner{height:4em;width:4em;border-radius:100%}.bounce .circle{-webkit-animation:sk-scaleout .8s infinite ease-in-out;animation:sk-scaleout .8s infinite ease-in-out}.bounce .circle .inner{background-color:#B71C1C}@-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)}20%{opacity:1}100%{-webkit-transform:scale(1);opacity:0}}@keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)}20%{opacity:1}100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}
 	</style>
 </head>
-<body>
+<body overide>
 	<app>
 		<div class="app">
 			<div class="loading center">
-				<div class="bounce" style="font-size: 0.5em;">
+				<div class="bounce">
 					<div class="circle"><div class="inner"></div></div>
 				</div>
 			</div>
 		</div>
 	</app>
-	<% if (htmlWebpackPlugin.options.metadata.isDevServer) { %>
-	<!-- Webpack Dev Server reload -->
-	<script src="/webpack-dev-server.js"></script>
-	<% } %>
-	<!-- Google Analytics: change <analytics> to be your site's ID -->
+	<!-- Google Analytics: change UA-71073175-1 to be your site's ID -->
 	<!--script >
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -108,5 +106,10 @@
 		ga('create', '<analytics-code>', 'auto');
 		ga('send', 'pageview');
 	</script-->
+	<% if (htmlWebpackPlugin.options.metadata.isDevServer) { %>
+	<!-- Webpack Dev Server reload -->
+	<script> window['mock'] = true; </script>
+	<script src="/webpack-dev-server.js"></script>
+	<% } %>
 </body>
 </html>

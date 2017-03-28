@@ -22,13 +22,17 @@
             "source-map",
             "uglify-js",
             "webpack",
-            "systemjs"
+            "faker"
         ]
     },
-    "exclude": [
+    "exclude": [        
+    	"dist",
+        "src",
         "node_modules",
-        "typings/main",
-        "typings/main.d.ts"
+        ".build/app/lib/a2-composer/deps.d.ts",
+        ".build/main.aot.browser.ts",
+        ".build/polyfills.aot.browser.ts"
+
     ],
     "compileOnSave": false,
     "buildOnSave": false,

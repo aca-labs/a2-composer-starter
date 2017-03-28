@@ -24,7 +24,7 @@ import { Router } from '@angular/router';
       ])
   ]
 })
-export class AdvancedAppComponent {
+export class AdvancedComponent {
     image: string = 'http://static1.squarespace.com/static/52142586e4b0c09536a144ad/t/561327b2e4b06f521722e448/1469084115046/?format=1500w';
     title: string = 'Composer Starter Kit';
     menu_open: boolean = false;
