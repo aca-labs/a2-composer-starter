@@ -1,5 +1,5 @@
 
-!> This project has been deprecated in favour of https://github.com/acaprojects/demo-ui
+> This project has been deprecated in favour of https://github.com/acaprojects/demo-ui
 
 
 
